@@ -120,8 +120,7 @@ func (w *internalDataWriter) write64(data []byte) (n int64, err error) {
 			//@TODO: Should we worry about "iaciac" potentially being modified by the .Write()?
 			numWritten, err = oi.LongWrite(w.wrapped, iaciac)
 			if int64(len(iaciac)) != numWritten {
-				//@TODO: Do we really want to panic() here?
-				panic(errPartialIACIACWrite)
+				//Do not panic, just move on...
 			}
 			n += 1
 			if nil != err {
